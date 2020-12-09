@@ -13,7 +13,7 @@ import { ImageSourcePropType, StyleProp, ViewStyle } from 'react-native';
 import {
   ScreenProps,
   ScreenStackHeaderConfigProps,
-} from '@nectr-rn/react-native-screens';
+} from 'react-native-screens';
 
 export type NativeStackNavigationEventMap = {
   /**

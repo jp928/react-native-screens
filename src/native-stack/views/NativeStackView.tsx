@@ -13,7 +13,7 @@ import {
   ScreenProps,
   ScreenStack,
   StackPresentationTypes,
-} from '@nectr-rn/react-native-screens';
+} from 'react-native-screens';
 import {
   NativeStackDescriptorMap,
   NativeStackNavigationHelpers,
