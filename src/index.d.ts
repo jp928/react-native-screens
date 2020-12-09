@@ -28,7 +28,8 @@ declare module 'react-native-screens' {
     | 'flip'
     | 'none'
     | 'slide_from_right'
-    | 'slide_from_left';
+    | 'slide_from_left'
+    | 'slide_from_bottom';
   export type BlurEffectTypes =
     | 'extraLight'
     | 'light'
