@@ -1,7 +1,7 @@
 // connected PRs: #679, #675
 import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
-import {ScrollView, StyleSheet, View, Button, Text} from 'react-native';
+import {ScrollView, StyleSheet, View, Button} from 'react-native';
 import {createNativeStackNavigator} from 'react-native-screens/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
@@ -18,14 +18,14 @@ export default function NativeNavigation() {
           name="Home"
           component={Home}
           options={{
-            screenOrientation: 'portrait_up',
+            statusBarStyle: 'light',
           }}
         />
         <Stack.Screen
           name="TabNavigator"
           component={TabNavigator}
           options={{
-            screenOrientation: 'landscape',
+            statusBarStyle: 'dark',
           }}
         />
       </Stack.Navigator>
@@ -48,7 +48,7 @@ const InnerStack = createNativeStackNavigator();
 const Inner = (props) => (
   <InnerStack.Navigator
     screenOptions={{
-      screenOrientation: 'portrait_down',
+      statusBarStyle: 'dark',
     }}>
     <InnerStack.Screen name="DeeperHome" component={Home} />
   </InnerStack.Navigator>
@@ -69,21 +69,20 @@ function Home({navigation}) {
         }}
       />
       <Button
+        title="status bar style"
+        onPress={() => {
+          navigation.setOptions({
+            statusBarStyle: Math.random() > 0.5 ? 'light' : 'dark',
+          });
+          setYes(!yes);
+        }}
+      />
+      <Button
         title="Pop one modal"
         onPress={() => {
           navigation.pop();
         }}
       />
-      <Button
-        title="Randomly change screen orientation"
-        onPress={() => {
-          navigation.setOptions({
-            screenOrientation: Math.random() > 0.5 ? 'portrait' : 'landscape',
-          });
-          setYes(!yes);
-        }}
-      />
-      <Text>Go to `TabNavigator` and then go to second tab there. Spot the difference between dismissing modal with a swipe and with a `Pop to top` button. </Text> 
     </ScrollView>
   );
 }
