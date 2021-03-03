@@ -97,7 +97,8 @@
     nextVC = nav.topViewController;
   }
 
-  if (vc != nil && nextVC == vc) {
+  // if nav is nil, it means we are in a fullScreen modal, so there is no nextVC, but we still want to update
+  if (vc != nil && (nav == nil || nextVC == vc)) {
     [RNSScreenStackHeaderConfig updateViewController:self.screenView.controller
                                           withConfig:self
                                             animated:YES];
@@ -387,15 +388,15 @@ API_AVAILABLE(ios(13.0)){
   }
 #endif
 
-  if (shouldHide) {
-    return;
-  }
-
   if (config.direction == UISemanticContentAttributeForceLeftToRight || config.direction == UISemanticContentAttributeForceRightToLeft) {
     navctr.view.semanticContentAttribute = config.direction;
     navctr.navigationBar.semanticContentAttribute = config.direction;
   }
 
+  if (shouldHide) {
+    return;
+  }
+  
   navitem.title = config.title;
 #if !TARGET_OS_TV
   if (config.backTitle != nil || config.backTitleFontFamily || config.backTitleFontSize) {
