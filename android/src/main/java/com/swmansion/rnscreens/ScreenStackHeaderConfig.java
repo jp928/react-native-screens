@@ -44,7 +44,7 @@ public class ScreenStackHeaderConfig extends ViewGroup {
   private boolean mIsTranslucent;
   private int mTintColor;
   private final Toolbar mToolbar;
-  private int mScreenOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+  private int mScreenOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED;
 
   private boolean mIsAttachedToWindow = false;
 
@@ -173,7 +173,8 @@ public class ScreenStackHeaderConfig extends ViewGroup {
     }
 
     // orientation
-    if (getScreenFragment() == null || !getScreenFragment().hasChildScreenWithConfig(getScreen())) {
+    if ((getScreenFragment() == null || !getScreenFragment().hasChildScreenWithConfig(getScreen()))
+      && mScreenOrientation != ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED) {
       // we check if there is no child that provides config, since then we shouldn't change orientation here
       activity.setRequestedOrientation(mScreenOrientation);
     }
